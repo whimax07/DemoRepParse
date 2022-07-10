@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="A couple of small adjustments.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DemoRepParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DemoRepParse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tree/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tree/AST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tree/Tree.java" afterDir="false" />
-    </list>
+    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="Formatting." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +129,28 @@
       <option name="project" value="LOCAL" />
       <updated>1657469810025</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="A couple of small adjustments.">
+      <created>1657478270872</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657478270872</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Formatting.">
+      <created>1657478352011</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657478352011</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Formatting.">
+      <created>1657478566929</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1657478566929</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +168,7 @@
     <MESSAGE value="Started looking at how to write a maths parser." />
     <MESSAGE value="Finished the parse to an AST." />
     <MESSAGE value="A couple of small adjustments." />
-    <option name="LAST_COMMIT_MESSAGE" value="A couple of small adjustments." />
+    <MESSAGE value="Formatting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatting." />
   </component>
 </project>
