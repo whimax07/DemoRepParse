@@ -21,7 +21,6 @@ public class TokenizerTests {
                         new Number("0")
                 ));
 
-
         assertEquals(Tokenizer.tokenizer("1110"),
                 makeList(
                         new Number("1110")

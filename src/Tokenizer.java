@@ -163,7 +163,6 @@ public class Tokenizer {
         fast --;
     }
 
-
     private Token getLastToken() {
         return tokens.get(tokens.size() - 1);
     }

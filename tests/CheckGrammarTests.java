@@ -21,5 +21,4 @@ public class CheckGrammarTests {
         assertTrue(parser.isCorrectGrammar("10 * 15 - (0x12 * 4)"));
     }
 
-
 }

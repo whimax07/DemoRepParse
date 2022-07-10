@@ -32,6 +32,7 @@ public class Tree<T> {
     }
 
 
+
     public Tree<T> getLeft() {
         return left;
     }
@@ -61,9 +62,10 @@ public class Tree<T> {
     @Override
     public String toString() {
         return (left == null && right == null) ?
-                (value == null) ? "Tree{}" : "Tree{" + value + "}"
-                :
-                "Tree{" +
+                (value == null) ?
+                        "Tree{}"
+                        : "Tree{" + value + "}"
+                : "Tree{" +
                 "\nvalue=" + value +
                 "\nleft=" + left +
                 "\nright=" + right +
