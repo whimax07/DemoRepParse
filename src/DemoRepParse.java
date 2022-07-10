@@ -1,5 +1,8 @@
-import data.*;
+import tokens.*;
+import tokens.Number;
+import tree.AST;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -8,135 +11,174 @@ import java.util.Stack;
  */
 public class DemoRepParse {
 
-    private ArrayList<Primitive> primitives;
+    private ArrayList<Token> tokens;
 
     private int currentPosition = 0;
 
-    private Stack<Operand> operators = new Stack<>();
+    private Stack<Operator> operators = new Stack<>();
 
-    private Stack<Tree<Primitive>> operands = new Stack<>();
+    private Stack<AST> operands = new Stack<>();
 
 
 
-    public void parse(String toParse) {
-        primitives = Tokenizer.tokenizer(toParse);
+    private void cleanClass() {
+        tokens = new ArrayList<>();
+        currentPosition = 0;
+        operators = new Stack<>();
+        operands = new Stack<>();
+    }
+
+
+    boolean isCorrectGrammar(String toCheck) throws ParseException {
+        cleanClass();
+
+        if (toCheck.isBlank()) {
+            return true;
+        }
+
+        tokens = Tokenizer.tokenizer(toCheck);
+        currentPosition = 0;
+
+        checkE();
+        expect(End.END);
+        return true;
+    }
+
+    private void checkE() throws ParseException {
+        checkP();
+        while (next() instanceof Binary) {
+            consume();
+            checkP();
+        }
+    }
+
+    private void checkP() throws ParseException {
+        switch (next()) {
+            case Number number -> consume();
+            case Brackets brackets && brackets == Brackets.OPEN -> {
+                consume();
+                checkE();
+                expect(Brackets.CLOSE);
+            }
+            case Unary unary -> {
+                consume();
+                checkP();
+            }
+            default -> throw new ParseException("Failed to match " + next() + " to a token expected by the grammar.",
+                    currentPosition);
+        }
     }
 
 
 
-    private Primitive next() {
-        if (currentPosition + 1 < primitives.size()) {
-            return primitives.get(currentPosition);
+    public Stack<AST> parse(String toParse) throws ParseException {
+        cleanClass();
+
+        if (toParse.isBlank()) {
+            return new Stack<>();
+        }
+
+        tokens = Tokenizer.tokenizer(toParse);
+
+        operators.push(Sentinel.SENTINEL);
+        parseE();
+        expect(End.END);
+        return operands;
+    }
+
+    private void parseE() throws ParseException {
+        parseP();
+        while (next() instanceof Binary binary) {
+            pushOperator(binary);
+            consume();
+            parseP();
+        }
+
+        while (operators.peek() != Sentinel.SENTINEL) {
+            popOperator();
+        }
+    }
+
+    private void parseP() throws ParseException {
+        switch (next()) {
+            case Number number -> {
+                operands.push(makeLeaf(number));
+                consume();
+            }
+            case Brackets brackets && brackets == Brackets.OPEN -> {
+                consume();
+                operators.push(Sentinel.SENTINEL);
+                parseE();
+                expect(Brackets.CLOSE);
+                operators.pop();
+            }
+            case Unary unary -> {
+                pushOperator(unary);
+                consume();
+                parseP();
+            }
+            default -> throw new ParseException("Unexpected token type: " + next() + ".", currentPosition);
+        }
+    }
+
+    private void pushOperator(Operator operator) throws ParseException {
+        while (Operator.comparePrecedence(operators.peek(), operator)) {
+            popOperator();
+        }
+        operators.push(operator);
+    }
+
+    private void popOperator() throws ParseException {
+        Operator operator = operators.pop();
+        switch (operator) {
+            case Binary binary -> {
+                AST operand1 = operands.pop();
+                AST operand2 = operands.pop();
+
+                operands.push(makeNode(binary, operand1, operand2));
+            }
+            case Unary unary -> {
+                AST operand = operands.pop();
+
+                operands.push(makeNode(unary, operand));
+            }
+            default -> throw new ParseException("Recived a operator that wasn't Binary or Unary. " + operator, 
+                    currentPosition);
+        }
+    }
+
+
+    private void expect(Token token) throws ParseException {
+        if (next() == token) {
+            consume();
         } else {
-            return new End();
+            throw new ParseException("Expected: " + token + "\nFound: " + next(), currentPosition);
+        }
+    }
+
+    private Token next() {
+        if (currentPosition < tokens.size()) {
+            return tokens.get(currentPosition);
+        } else {
+            return End.END;
         }
     }
 
     private void consume() {
-
+        currentPosition ++;
     }
 
 
-    private Tree<Primitive> makeLeaf(Primitive value) {
-        return new Tree<>(value);
+    private AST makeLeaf(Token value) {
+        return new AST(value);
     }
 
-    private Tree<Primitive> makeNode(Unary unaryOperator, Tree<Primitive> value) {
-        return new Tree<>(unaryOperator, value);
+    private AST makeNode(Unary unaryOperator, AST value) {
+        return new AST(unaryOperator, value);
     }
 
-    private Tree<Primitive> makeNode(Binary binaryOperator, Tree<Primitive> value1, Tree<Primitive> value2) {
-        return new Tree<>(binaryOperator, value1, value2);
-    }
-
-
-    private void error() {
-
+    private AST makeNode(Binary binaryOperator, AST value1, AST value2) {
+        return new AST(binaryOperator, value1, value2);
     }
 
 }
-
-
-/*
-"next" returns the next token of input or special marker "end" to represent that there are no more input tokens. "next" does not alter the input stream.
-"consume" reads one token. When "next=end", consume is still allowed, but has no effect.
-"error" stops the parsing process and reports an error.
- */
-
-/*
-"binary" converts a token matched by B to an operator.
-"unary" converts a token matched by U to an operator. We require that functions "unary" and "binary" have disjoint
-        ranges. (For example unary("-") and binary("-") are not equal.)
-"mkLeaf" converts a token matched by v to a tree.
-"mkNode" takes an operator and one or two trees and returns a tree.
-"push", "pop", "top": the usual stack operations.
-"empty": an empty stack
-"sentinel" is a value that is not in the range of either unary or binary.
- */
-
-/*
-binary(x) > binary(y), if x has higher precedence than y, or x is left associative and x and y have equal precedence.
-unary(x) > binary(y), if x has precedence higher or equal to y's
-op > unary(y), never (where op is any unary or binary operator)
-sentinel > op, never (where op is any unary or binary operator)
-op > sentinel  (where op is any unary or binary operator): This case doesn't arise.
- */
-
-/*
-    Eparser is
-       var operators : Stack of Operator := empty
-       var operands : Stack of Tree := empty
-       push( operators, sentinel )
-       E( operators, operands )
-       expect( end )
-       return top( operands )
- */
-
-/*
-    E( operators, operands ) is
-        P( operators, operands )
-        while next is a binary operator
-           pushOperator( binary(next), operators, operands )
-           consume
-           P( operators, operands )
-        while top(operators) not= sentinel
-           popOperator( operators, operands )
- */
-
-/*
-
-    P( operators, operands ) is
-        if next is a v
-             push( operands, mkLeaf( v ) )
-             consume
-        else if next = "("
-             consume
-             push( operators, sentinel )
-             E( operators, operands )
-             expect( ")" )
-             pop( operators )
-        else if next is a unary operator
-             pushOperator( unary(next), operators, operands )
-             consume
-             P( operators, operands )
-        else
-             error
- */
-
-/*
-    popOperator( operators, operands ) is
-       if top(operators) is binary
-            const t1 := pop( operands )
-            const t0 := pop( operands )
-            push( operands, mkNode( pop(operators), t0, t1 ) )
-       else
-            push( operands, mkNode( pop(operators), pop(operands) ) )
- */
-
-/*
-
-    pushOperator( op, operators, operands ) is
-        while top(operators) > op
-           popOperator( operators, operands )
-        push( op, operators )
- */

@@ -4,26 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoRepParse.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DemoRepParse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tokenizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Binary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Brackets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/End.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Number.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Operand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Primitive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Sentinel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/Unary.java" afterDir="false" />
+    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="Started looking at how to write a maths parser.">
+      <change afterPath="$PROJECT_DIR$/src/tokens/End.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tokens/Operator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tokens/Sentinel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tokens/Unary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tree/AST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/CheckGrammarTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/TokenizerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoRepParse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoRepParse.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DemoRepParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DemoRepParse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tree/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Binary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Binary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Brackets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Brackets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/End.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Number.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Operand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Primitive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Sentinel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Unary.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,16 +59,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-18",
     "last_opened_file_path": "C:/Users/Max/IdeaProjects/DemoRepParse",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DemoRepParse" />
@@ -73,9 +82,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CheckGrammarTests.goodGrammarTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DemoRepParse" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CheckGrammarTests" />
+      <option name="METHOD_NAME" value="goodGrammarTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TokenizerTests.checkTokenizer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DemoRepParse" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TokenizerTests" />
+      <option name="METHOD_NAME" value="checkTokenizer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.CheckGrammarTests.goodGrammarTest" />
+        <item itemvalue="JUnit.TokenizerTests.checkTokenizer" />
       </list>
     </recent_temporary>
   </component>
@@ -88,6 +119,14 @@
       <option name="presentableId" value="Default" />
       <updated>1657397388241</updated>
     </task>
+    <task id="LOCAL-00001" summary="Started looking at how to write a maths parser.">
+      <created>1657407703172</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657407703172</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,5 +139,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Started looking at how to write a maths parser." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started looking at how to write a maths parser." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

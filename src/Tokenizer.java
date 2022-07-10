@@ -1,9 +1,8 @@
-import com.sun.jdi.Value;
-import data.Binary;
-import data.Brackets;
-import data.Number;
-import data.Primitive;
-import data.Unary;
+import tokens.Binary;
+import tokens.Brackets;
+import tokens.Number;
+import tokens.Token;
+import tokens.Unary;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -22,7 +21,7 @@ public class Tokenizer {
 
     private final char[] input;
 
-    private final ArrayList<Primitive> tokens = new ArrayList<>();
+    private final ArrayList<Token> tokens = new ArrayList<>();
 
     private int fast = 0;
 
@@ -30,7 +29,7 @@ public class Tokenizer {
 
 
 
-    public static ArrayList<Primitive> tokenizer(String input) {
+    public static ArrayList<Token> tokenizer(String input) {
         Tokenizer tokenizer = new Tokenizer(input);
         return tokenizer.tokens;
     }
@@ -76,9 +75,9 @@ public class Tokenizer {
             case '/' -> tokens.add(Binary.DIVIDE);
             case '+' -> tokens.add(Binary.ADD);
             case '-' -> {
-                boolean isSubtract = tokens.isEmpty()
-                        || getLastToken() instanceof Number
-                        || getLastToken() instanceof Brackets bracket && bracket == Brackets.CLOSE;
+                boolean isSubtract = !tokens.isEmpty() &&
+                        (getLastToken() instanceof Number
+                                || getLastToken() instanceof Brackets bracket && bracket == Brackets.CLOSE);
 
                 if (isSubtract) {
                     tokens.add(Binary.SUBTRACT);
@@ -132,6 +131,8 @@ public class Tokenizer {
                 }
                 default -> parseDec();
             }
+        } else {
+            parseDec();
         }
 
         return true;
@@ -163,7 +164,7 @@ public class Tokenizer {
     }
 
 
-    private Primitive getLastToken() {
+    private Token getLastToken() {
         return tokens.get(tokens.size() - 1);
     }
 

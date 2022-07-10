@@ -1,3 +1,5 @@
+package tree;
+
 public class Tree<T> {
 
     private Tree<T> left;
@@ -47,6 +49,20 @@ public class Tree<T> {
 
     public void setValue(T value) {
         this.value = value;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return (left == null && right == null) ?
+                value.toString()
+                :
+                "Tree{" +
+                "\nvalue=" + value +
+                "\nleft=" + left +
+                "\nright=" + right +
+                '}';
     }
 
 }

@@ -1,6 +1,6 @@
-package data;
+package tokens;
 
-public enum Binary implements Operand, Primitive {
+public enum Binary implements Operator, Token {
     ADD(3, true),
     SUBTRACT(3, true),
     MULTIPLY(5, true),
@@ -27,14 +27,6 @@ public enum Binary implements Operand, Primitive {
 
     public boolean isLeftAssociative() {
         return isLeftAssociative;
-    }
-
-    /**
-     * binary(this) > binary(y), if this has higher precedence than y, or this is left associative and this and y have
-     * equal precedence.
-     */
-    public boolean evalBeforeY(Binary y) {
-        return this.president > y.president || (this.isLeftAssociative && this.president == y.president);
     }
 
 }
