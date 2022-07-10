@@ -10,6 +10,12 @@ public class Tree<T> {
 
 
 
+    public Tree() {
+        value = null;
+        left = null;
+        right = null;
+    }
+
     public Tree(T value) {
         this.value = value;
     }
@@ -24,7 +30,6 @@ public class Tree<T> {
         this.left = left;
         this.right = right;
     }
-
 
 
     public Tree<T> getLeft() {
@@ -56,7 +61,7 @@ public class Tree<T> {
     @Override
     public String toString() {
         return (left == null && right == null) ?
-                value.toString()
+                (value == null) ? "Tree{}" : "Tree{" + value + "}"
                 :
                 "Tree{" +
                 "\nvalue=" + value +

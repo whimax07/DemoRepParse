@@ -71,11 +71,11 @@ public class DemoRepParse {
 
 
 
-    public Stack<AST> parse(String toParse) throws ParseException {
+    public AST parse(String toParse) throws ParseException {
         cleanClass();
 
         if (toParse.isBlank()) {
-            return new Stack<>();
+            return new AST();
         }
 
         tokens = Tokenizer.tokenizer(toParse);
@@ -83,7 +83,7 @@ public class DemoRepParse {
         operators.push(Sentinel.SENTINEL);
         parseE();
         expect(End.END);
-        return operands;
+        return operands.peek();
     }
 
     private void parseE() throws ParseException {
@@ -167,7 +167,6 @@ public class DemoRepParse {
     private void consume() {
         currentPosition ++;
     }
-
 
     private AST makeLeaf(Token value) {
         return new AST(value);

@@ -149,7 +149,7 @@ public class Tokenizer {
     }
 
     private void parseDec() {
-        final Pattern hexDigits = Pattern.compile("[0-9_,]+");
+        final Pattern hexDigits = Pattern.compile("[0-9_,]+[.]?[0-9_,]*");
         addNumberToken(hexDigits);
     }
 

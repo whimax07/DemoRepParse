@@ -7,6 +7,10 @@ import tokens.Token;
  */
 public class AST extends Tree<Token> {
 
+    public AST() {
+        super();
+    }
+
     public AST(Token value) {
         super(value);
     }
@@ -18,9 +22,5 @@ public class AST extends Tree<Token> {
     public AST(Token value, Tree<Token> left, Tree<Token> right) {
         super(value, left, right);
     }
-
-
-
-
 
 }

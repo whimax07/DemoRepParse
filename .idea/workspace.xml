@@ -4,29 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="Started looking at how to write a maths parser.">
-      <change afterPath="$PROJECT_DIR$/src/tokens/End.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tokens/Operator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tokens/Sentinel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tokens/Unary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tree/AST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/CheckGrammarTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/TokenizerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="A couple of small adjustments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoRepParse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoRepParse.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DemoRepParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DemoRepParse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tree/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Binary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Binary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Brackets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Brackets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/End.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Number.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Operand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Primitive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Sentinel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Unary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tree/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tree/AST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tree/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +66,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in DemoRepParse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DemoRepParse" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CheckGrammarTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DemoRepParse" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CheckGrammarTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CheckGrammarTests.goodGrammarTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DemoRepParse" />
       <option name="PACKAGE_NAME" value="" />
@@ -105,6 +106,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.All in DemoRepParse" />
+        <item itemvalue="JUnit.CheckGrammarTests" />
         <item itemvalue="JUnit.CheckGrammarTests.goodGrammarTest" />
         <item itemvalue="JUnit.TokenizerTests.checkTokenizer" />
       </list>
@@ -126,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657407703172</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finished the parse to an AST.">
+      <created>1657469810025</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657469810025</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,17 +152,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started looking at how to write a maths parser." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started looking at how to write a maths parser." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Finished the parse to an AST." />
+    <MESSAGE value="A couple of small adjustments." />
+    <option name="LAST_COMMIT_MESSAGE" value="A couple of small adjustments." />
   </component>
 </project>
