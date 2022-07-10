@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * An implementation from https://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
+ * An implementation from <a href="https://www.engr.mun.ca/~theo/Misc/exp_parsing.htm">Parsing Expressions by Recursive
+ * Descent Theodore Norvell (C) 1999 with updates later on.</a>
  */
 public class DemoRepParse {
 
@@ -27,6 +28,7 @@ public class DemoRepParse {
         operators = new Stack<>();
         operands = new Stack<>();
     }
+
 
 
     boolean isCorrectGrammar(String toCheck) throws ParseException {
@@ -146,6 +148,7 @@ public class DemoRepParse {
                     currentPosition);
         }
     }
+
 
 
     private void expect(Token token) throws ParseException {
