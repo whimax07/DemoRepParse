@@ -49,7 +49,7 @@ public class Tokenizer {
                 continue;
             }
 
-            if (isOperand()) {
+            if (isOperator()) {
                 fast ++;
                 continue;
             }
@@ -69,7 +69,7 @@ public class Tokenizer {
         }
     }
 
-    private boolean isOperand() {
+    private boolean isOperator() {
         switch (input[fast]) {
             case '*' -> tokens.add(Binary.MULTIPLY);
             case '/' -> tokens.add(Binary.DIVIDE);
