@@ -60,7 +60,6 @@ public class Tokenizer {
             }
 
             if (isNumber()) {
-                fast ++;
                 continue;
             }
 
@@ -160,7 +159,6 @@ public class Tokenizer {
 
         fast = matcher.end();
         tokens.add(new Number(inputString.substring(slow, fast)));
-        fast --;
     }
 
     private Token getLastToken() {
