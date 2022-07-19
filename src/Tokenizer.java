@@ -1,6 +1,6 @@
 import tokens.Binary;
 import tokens.Brackets;
-import tokens.Number;
+import tokens.NumberToken;
 import tokens.Token;
 import tokens.Unary;
 
@@ -75,7 +75,7 @@ public class Tokenizer {
             case '+' -> tokens.add(Binary.ADD);
             case '-' -> {
                 boolean isSubtract = !tokens.isEmpty() &&
-                        (getLastToken() instanceof Number
+                        (getLastToken() instanceof NumberToken
                                 || getLastToken() instanceof Brackets bracket && bracket == Brackets.CLOSE);
 
                 if (isSubtract) {
@@ -160,7 +160,7 @@ public class Tokenizer {
         fast = matcher.end();
         String string = inputString.substring(slow, fast);
 
-        tokens.add(new Number(string));
+        tokens.add(new NumberToken(string));
     }
 
     private Token getLastToken() {

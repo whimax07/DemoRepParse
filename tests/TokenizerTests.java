@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import tokens.*;
-import tokens.Number;
+import tokens.NumberToken;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,51 +18,51 @@ public class TokenizerTests {
 
         assertEquals(Tokenizer.tokenizer("0"),
                 makeList(
-                        new Number("0")
+                        new NumberToken("0")
                 ));
 
         assertEquals(Tokenizer.tokenizer("1110"),
                 makeList(
-                        new Number("1110")
+                        new NumberToken("1110")
                 ));
 
         assertEquals(Tokenizer.tokenizer("10 * 20 + 30"),
                 makeList(
-                        new Number("10"),
+                        new NumberToken("10"),
                         Binary.MULTIPLY,
-                        new Number("20"),
+                        new NumberToken("20"),
                         Binary.ADD,
-                        new Number("30")
+                        new NumberToken("30")
                 ));
 
         assertEquals(Tokenizer.tokenizer("10 * -20 + 30"),
                 makeList(
-                        new Number("10"),
+                        new NumberToken("10"),
                         Binary.MULTIPLY,
                         Unary.NEGATE,
-                        new Number("20"),
+                        new NumberToken("20"),
                         Binary.ADD,
-                        new Number("30")
+                        new NumberToken("30")
                 ));
 
         assertEquals(Tokenizer.tokenizer("0x10 * -20 + 0b1110"),
                 makeList(
-                        new Number("0x10"),
+                        new NumberToken("0x10"),
                         Binary.MULTIPLY,
                         Unary.NEGATE,
-                        new Number("20"),
+                        new NumberToken("20"),
                         Binary.ADD,
-                        new Number("0b1110")
+                        new NumberToken("0b1110")
                 ));
 
         assertEquals(Tokenizer.tokenizer("0x10 / -20 - 0b1110"),
                 makeList(
-                        new Number("0x10"),
+                        new NumberToken("0x10"),
                         Binary.DIVIDE,
                         Unary.NEGATE,
-                        new Number("20"),
+                        new NumberToken("20"),
                         Binary.SUBTRACT,
-                        new Number("0b1110")
+                        new NumberToken("0b1110")
                 ));
     }
 

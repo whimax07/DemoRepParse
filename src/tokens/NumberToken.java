@@ -1,6 +1,6 @@
 package tokens;
 
-public class Number implements Token {
+public class NumberToken implements Token {
 
     private final String stringValue;
 
@@ -12,7 +12,7 @@ public class Number implements Token {
 
 
 
-    public Number(String stringValue) {
+    public NumberToken(String stringValue) {
         this.stringValue = stringValue;
 
         if (stringValue.startsWith("0x") || stringValue.startsWith("0X")) {
@@ -32,7 +32,7 @@ public class Number implements Token {
         numericValue = parseNum();
     }
 
-    public Number(java.lang.Number numericValue) {
+    public NumberToken(java.lang.Number numericValue) {
         this.numericValue = numericValue;
 
         this.format = Format.DEC;

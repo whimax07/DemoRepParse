@@ -1,5 +1,5 @@
 import tokens.*;
-import tokens.Number;
+import tokens.NumberToken;
 import tree.AST;
 
 import java.text.ParseException;
@@ -56,7 +56,7 @@ public class DemoRepParse {
 
     private void checkP() throws ParseException {
         switch (next()) {
-            case Number number -> consume();
+            case NumberToken numberToken -> consume();
             case Brackets brackets && brackets == Brackets.OPEN -> {
                 consume();
                 checkE();
@@ -103,8 +103,8 @@ public class DemoRepParse {
 
     private void parseP() throws ParseException {
         switch (next()) {
-            case Number number -> {
-                operands.push(makeLeaf(number));
+            case NumberToken numberToken -> {
+                operands.push(makeLeaf(numberToken));
                 consume();
             }
             case Brackets brackets && brackets == Brackets.OPEN -> {
@@ -134,8 +134,8 @@ public class DemoRepParse {
         Operator operator = operators.pop();
         switch (operator) {
             case Binary binary -> {
-                AST operand1 = operands.pop();
                 AST operand2 = operands.pop();
+                AST operand1 = operands.pop();
 
                 operands.push(makeNode(binary, operand1, operand2));
             }

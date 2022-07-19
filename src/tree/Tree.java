@@ -1,10 +1,10 @@
 package tree;
 
-public class Tree<T> {
+public abstract class Tree<T, U extends Tree<T, U>> {
 
-    private Tree<T> left;
+    private U left = null;
 
-    private Tree<T> right;
+    private U right = null;
 
     private T value;
 
@@ -20,12 +20,12 @@ public class Tree<T> {
         this.value = value;
     }
 
-    public Tree(T value, Tree<T> left) {
+    public Tree(T value, U left) {
         this.value = value;
         this.left = left;
     }
 
-    public Tree(T value, Tree<T> left, Tree<T> right) {
+    public Tree(T value, U left, U right) {
         this.value = value;
         this.left = left;
         this.right = right;
@@ -33,19 +33,19 @@ public class Tree<T> {
 
 
 
-    public Tree<T> getLeft() {
+    public U getLeft() {
         return left;
     }
 
-    public void setLeft(Tree<T> left) {
+    public void setLeft(U left) {
         this.left = left;
     }
 
-    public Tree<T> getRight() {
+    public U getRight() {
         return right;
     }
 
-    public void setRight(Tree<T> right) {
+    public void setRight(U right) {
         this.right = right;
     }
 
