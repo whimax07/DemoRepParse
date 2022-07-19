@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="Typo.">
+    <list default="true" id="9781db53-b8c8-46db-a2ca-b33cf0cffc1b" name="Changes" comment="Added eval methods for the operations.">
+      <change afterPath="$PROJECT_DIR$/src/tokens/Format.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tokens/NumericType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tokens/Binary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Binary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tokens/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tokens/Unary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Unary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tokens/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/Number.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +57,14 @@
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="tokens" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="tokens" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -170,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657567165449</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added eval methods for the operations.">
+      <created>1658241879464</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658241879464</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +206,7 @@
     <MESSAGE value="Formatting." />
     <MESSAGE value="Updated the readme." />
     <MESSAGE value="Typo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Typo." />
+    <MESSAGE value="Added eval methods for the operations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added eval methods for the operations." />
   </component>
 </project>

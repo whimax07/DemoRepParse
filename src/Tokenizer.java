@@ -152,13 +152,15 @@ public class Tokenizer {
         addNumberToken(hexDigits);
     }
 
-    private void addNumberToken(Pattern hexDigits) {
-        Matcher matcher = hexDigits.matcher(inputString);
+    private void addNumberToken(Pattern digitsChars) {
+        Matcher matcher = digitsChars.matcher(inputString);
         boolean b = matcher.find(fast);
         assert b;
 
         fast = matcher.end();
-        tokens.add(new Number(inputString.substring(slow, fast)));
+        String string = inputString.substring(slow, fast);
+
+        tokens.add(new Number(string));
     }
 
     private Token getLastToken() {
